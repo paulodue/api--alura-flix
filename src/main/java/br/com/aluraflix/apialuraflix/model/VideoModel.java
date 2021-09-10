@@ -13,7 +13,7 @@ public class VideoModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @Size(message = "O título deve ter no mínimo 10 e máximo 100 caracteres", min = 10, max = 100)
+    @Size(message = "O título deve ter no mínimo 10 e máximo 100 caracteres", min = 10, max = 100)
     @NotBlank(message = "Este campo deve ser preenchido!")
     @Column(name = "titulo", length = 100, nullable = false)
     private String titulo;

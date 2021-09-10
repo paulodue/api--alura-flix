@@ -1,6 +1,7 @@
 package br.com.aluraflix.apialuraflix.controller;
 
 import br.com.aluraflix.apialuraflix.model.VideoModel;
+import br.com.aluraflix.apialuraflix.model.VideoNaoEncontradoException;
 import br.com.aluraflix.apialuraflix.repository.VideoRepository;
 import br.com.aluraflix.apialuraflix.service.VideoService;
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
@@ -48,12 +49,11 @@ public class VideoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<VideoModel> putOne(@PathVariable("id") Long id, @RequestBody VideoModel videoModel) {
-        if(Objects.nonNull(videoService.putOne(id, videoModel))) {
-            return ResponseEntity.ok(videoService.putOne(id, videoModel));
-        } else {
-            return ResponseEntity.notFound().build();
+        try {
+            VideoModel videoModelSalvo = videoService.putOne(id, videoModel);
+            return ResponseEntity.ok(videoModelSalvo);
+        } catch (VideoNaoEncontradoException ex) {
+            return ResponseEntity.badRequest().build();
         }
-
-//        return ResponseEntity.ok(videoService.putOne(id, videoModel));
     }
 }
