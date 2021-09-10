@@ -1,0 +1,19 @@
+server:
+  port: ${SERVER_PORT:5000}
+  error:
+    include-message: always
+    include-binding-errors: always
+
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate.dll-auto: validate
+    defer-datasource-initialization: true
+  h2:
+    console.enabled: true
