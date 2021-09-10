@@ -2,16 +2,12 @@ package br.com.aluraflix.apialuraflix.controller;
 
 import br.com.aluraflix.apialuraflix.model.VideoModel;
 import br.com.aluraflix.apialuraflix.model.VideoNaoEncontradoException;
-import br.com.aluraflix.apialuraflix.repository.VideoRepository;
 import br.com.aluraflix.apialuraflix.service.VideoService;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 
