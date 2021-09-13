@@ -3,6 +3,7 @@ package br.com.aluraflix.apialuraflix.service;
 import br.com.aluraflix.apialuraflix.model.VideoModel;
 import br.com.aluraflix.apialuraflix.model.VideoNaoEncontradoException;
 import br.com.aluraflix.apialuraflix.repository.VideoRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,6 +38,16 @@ public class VideoService {
             videoModel.setId(id);
             return videoRepository.save(videoModel);
         }
-        throw new VideoNaoEncontradoException(String.format("Video de id %d não encontrado!", id));
+        throw new VideoNaoEncontradoException(String.format("Video de ID %d não encontrado!", id));
+    }
+
+    public void deleteOne(Long id) {
+        Optional<VideoModel> videoModelDelete = videoRepository.findById(id);
+
+        if (videoModelDelete.isPresent()) {
+            videoRepository.deleteById(id);
+        } else {
+            throw new VideoNaoEncontradoException(String.format("Video de ID %d não encontrado!", id));
+        }
     }
 }

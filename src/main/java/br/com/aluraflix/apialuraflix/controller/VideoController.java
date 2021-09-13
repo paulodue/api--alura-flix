@@ -28,14 +28,9 @@ public class VideoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<VideoModel> listOne(@PathVariable("id") Long id) {
+    public ResponseEntity<?> listOne(@PathVariable("id") Long id) {
         Optional<VideoModel> videoOPT = videoService.listOne(id);
         return ResponseEntity.of(videoOPT);
-//        if (videoOPT.isPresent()) {
-//            return ResponseEntity.ok(videoOPT.get());
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
     }
 
     @PostMapping
@@ -50,6 +45,16 @@ public class VideoController {
             return ResponseEntity.ok(videoModelSalvo);
         } catch (VideoNaoEncontradoException ex) {
             return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteOne(@PathVariable("id") Long id)  {
+        try {
+            videoService.deleteOne(id);
+            return ResponseEntity.ok().build();
+        } catch (VideoNaoEncontradoException ex) {
+            return ResponseEntity.notFound().build();
         }
     }
 }
