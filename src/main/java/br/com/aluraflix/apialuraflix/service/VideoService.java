@@ -24,7 +24,11 @@ public class VideoService {
     }
 
     public Optional<VideoModel> listOne(Long id) {
-        return videoRepository.findById(id);
+       Optional<VideoModel> videoModelUnico = videoRepository.findById(id);
+        if (videoModelUnico.isPresent()) {
+            return videoRepository.findById(id);
+        }
+        throw new VideoNaoEncontradoException(String.format("Video de ID %d não encontrado!", id));
     }
 
     public VideoModel createOne(VideoModel videoModel) {

@@ -29,8 +29,12 @@ public class VideoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> listOne(@PathVariable("id") Long id) {
-        Optional<VideoModel> videoOPT = videoService.listOne(id);
-        return ResponseEntity.of(videoOPT);
+        try {
+            Optional<VideoModel> videoOPT = videoService.listOne(id);
+            return ResponseEntity.ok(videoOPT);
+        } catch (VideoNaoEncontradoException ex) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping
