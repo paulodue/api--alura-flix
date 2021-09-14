@@ -3,7 +3,6 @@ package br.com.aluraflix.apialuraflix.service;
 import br.com.aluraflix.apialuraflix.model.VideoModel;
 import br.com.aluraflix.apialuraflix.model.VideoNaoEncontradoException;
 import br.com.aluraflix.apialuraflix.repository.VideoRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
